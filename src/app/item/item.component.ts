@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Item } from 'src/models/item.model';
+import { Item } from '@models/item.model';
 import { ApiService } from '../api.service';
 
 @Component({
