@@ -10,6 +10,16 @@ import { ApiService } from '../api.service';
 export class ItemComponent implements OnInit {
   @Input() id: number | undefined;
   item: Item | undefined;
+  kidsPluralMapping = {
+    '=0': 'discuss',
+    '=1': '1 comment',
+    other: '# comments',
+  };
+  pointsPluralMapping = {
+    '=0': '0 points',
+    '=1': '1 point',
+    other: '# points',
+  };
 
   constructor(private apiService: ApiService) {}
 

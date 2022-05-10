@@ -1,7 +1,7 @@
 <div *ngIf="!items.length">Loading...</div>
 
-<div *ngIf="items.length">
-  <div *ngFor="let item of items">
+<ol *ngIf="items.length">
+  <li *ngFor="let item of items">
     <app-item [id]="item"></app-item>
-  </div>
-</div>
+  </li>
+</ol>

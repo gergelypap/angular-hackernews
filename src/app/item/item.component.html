@@ -1,7 +1,16 @@
-<div *ngIf="!item">Loading...</div>
+<span *ngIf="!item">Loading...</span>
 
-<div *ngIf="item">
+<article *ngIf="item">
   <h2>
     <a href="{{ item.url }}">{{ item.title }}</a>
   </h2>
-</div>
+  <a *ngIf="item.url" href="/from?site=">({{ item.url | baseUrl }})</a>
+  <p>
+    {{ item.score | i18nPlural: pointsPluralMapping }} by
+    <a href="/user/{{ item.by }}">{{ item.by }}</a>
+    <a href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
+    <a *ngIf="item.kids" href="/item/{{ item.id }}">{{
+      item.kids.length | i18nPlural: kidsPluralMapping
+    }}</a>
+  </p>
+</article>
