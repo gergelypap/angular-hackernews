@@ -15,6 +15,14 @@ export class ApiService {
     return this.http.get<number[]>(`${this.baseUrl}/topstories.json`);
   }
 
+  getNewStories(): Observable<number[]> {
+    return this.http.get<number[]>(`${this.baseUrl}/newstories.json`);
+  }
+
+  getBestStories(): Observable<number[]> {
+    return this.http.get<number[]>(`${this.baseUrl}/beststories.json`);
+  }
+
   getItem(id: number): Observable<Item> {
     return this.http.get<Item>(`${this.baseUrl}/item/${id}.json`);
   }
