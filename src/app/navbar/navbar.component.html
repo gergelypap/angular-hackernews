@@ -1,8 +1,21 @@
-<header>
-  <h1><a routerLink="/">HackerNews Angular</a></h1>
-  <nav>
-    <a routerLink="/top">top</a>
-    <a routerLink="/latest">latest</a>
-    <a routerLink="/best">best</a>
+<header class="bg-orange-500">
+  <h1 class="inline-block p-3">
+    <a class="font-bold hover:no-underline" routerLink="/"
+      >HackerNews Angular</a
+    >
+  </h1>
+  <nav class="inline-block">
+    <a class="p-3 hover:underline" routerLinkActive="active" routerLink="/top"
+      >top</a
+    >
+    <a
+      class="p-3 hover:underline"
+      routerLinkActive="active"
+      routerLink="/latest"
+      >latest</a
+    >
+    <a class="p-3 hover:underline" routerLinkActive="active" routerLink="/best"
+      >best</a
+    >
   </nav>
 </header>

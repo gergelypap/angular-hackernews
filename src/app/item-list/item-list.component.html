@@ -1,6 +1,6 @@
 <div *ngIf="!items.length">Loading...</div>
 
-<ol *ngIf="items.length">
+<ol class="list-decimal" *ngIf="items.length">
   <li *ngFor="let item of items">
     <app-item [id]="item"></app-item>
   </li>

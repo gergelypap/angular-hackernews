@@ -1,16 +1,21 @@
 <span *ngIf="!item">Loading...</span>
 
-<article *ngIf="item">
-  <h2>
+<article class="mb-3" *ngIf="item">
+  <h2 class="font-bold">
     <a href="{{ item.url }}">{{ item.title }}</a>
+    <a
+      class="ml-2 text-sm font-normal text-gray-600"
+      *ngIf="item.url"
+      href="/from?site="
+      >({{ item.url | baseUrl }})</a
+    >
   </h2>
-  <a *ngIf="item.url" href="/from?site=">({{ item.url | baseUrl }})</a>
-  <p>
+  <span class="text-sm text-gray-600">
     {{ item.score | i18nPlural: pointsPluralMapping }} by
-    <a href="/user/{{ item.by }}">{{ item.by }}</a>
-    <a href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
-    <a *ngIf="item.kids" href="/item/{{ item.id }}">{{
+    <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
+    <a class="mr-3" href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
+    <a class="mr-3" *ngIf="item.kids" href="/item/{{ item.id }}">{{
       item.kids.length | i18nPlural: kidsPluralMapping
     }}</a>
-  </p>
+  </span>
 </article>
