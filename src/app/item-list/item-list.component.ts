@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
 
@@ -10,17 +10,34 @@ import { ApiService } from '../api.service';
 })
 export class ItemListComponent implements OnInit {
   public items: number[] = [];
-  public chunkSize: number = 50;
+  public chunkSize: number = 30;
+  public loadedChunks: number = 0;
+  public feed: Observable<number[]> | undefined;
+  public loading: boolean = false;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.data.subscribe(({ list }) => {
-      this.getItems(list);
+      this.feed = this.getFeed(list);
+      this.getItems();
     });
   }
 
-  getFeed(list: string): Observable<any> {
+  getItems(): void {
+    this.loading = true;
+    this.feed?.subscribe((items) => {
+      this.items = this.items.concat(
+        items.slice(
+          this.loadedChunks * this.chunkSize,
+          this.loadedChunks * this.chunkSize + this.chunkSize
+        )
+      );
+      this.loading = false;
+    });
+  }
+
+  getFeed(list: string): Observable<number[]> {
     switch (list) {
       case 'top':
         return this.apiService.getTopStories();
@@ -28,13 +45,13 @@ export class ItemListComponent implements OnInit {
         return this.apiService.getNewStories();
       case 'best':
         return this.apiService.getBestStories();
+      default:
+        throw new Error(`Unknown list type ${list}`);
     }
-    throw new Error(`Unknown list type ${list}`);
   }
 
-  getItems(list: string): void {
-    this.getFeed(list).subscribe((items) => {
-      this.items = items.slice(0, this.chunkSize);
-    });
+  loadMore() {
+    this.loadedChunks++;
+    this.getItems();
   }
 }

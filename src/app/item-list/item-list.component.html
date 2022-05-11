@@ -1,7 +1,14 @@
-<div *ngIf="!items.length">Loading...</div>
-
 <ol class="list-decimal" *ngIf="items.length">
   <li *ngFor="let item of items">
     <app-item [id]="item"></app-item>
   </li>
 </ol>
+
+<button
+  class="text-blue-500 font-bold hover:underline disabled:text-gray-600 disabled:cursor-not-allowed"
+  (click)="loadMore()"
+  [disabled]="loading"
+>
+  <span *ngIf="loading">Loading</span>
+  <span *ngIf="!loading">Load more...</span>
+</button>
