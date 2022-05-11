@@ -5,17 +5,12 @@
     >
   </h1>
   <nav class="inline-block">
-    <a class="p-3 hover:underline" routerLinkActive="active" routerLink="/top"
-      >top</a
-    >
     <a
-      class="p-3 hover:underline"
+      class="p-3"
+      *ngFor="let link of links"
       routerLinkActive="active"
-      routerLink="/latest"
-      >latest</a
-    >
-    <a class="p-3 hover:underline" routerLinkActive="active" routerLink="/best"
-      >best</a
+      routerLink="{{ link.path }}"
+      >{{ link.text }}</a
     >
   </nav>
 </header>
