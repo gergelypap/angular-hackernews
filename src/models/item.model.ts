@@ -6,6 +6,8 @@ export interface Item {
   score: number;
   time: number;
   title: string;
-  type: 'story' | 'job';
+  type: 'story' | 'job' | 'comment';
   url: string;
+  parent?: number;
+  text?: string;
 }

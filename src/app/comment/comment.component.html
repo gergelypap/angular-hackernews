@@ -1,0 +1,17 @@
+<div *ngIf="!comment">Loading comment...</div>
+<div *ngIf="comment" class="comment-wrapper mt-5">
+  <div class="text-sm text-gray-500 inline-block">
+    <a class="mr-2" [routerLink]="['/user', comment.by]">{{ comment.by }}</a>
+    <span class="mr-2">{{ comment.time | timeAgo }} </span>
+    <button (click)="toggleCollapsed()" *ngIf="!collapsed">[-]</button>
+    <button (click)="toggleCollapsed()" *ngIf="collapsed">
+      [+{{ comment.kids?.length }}]
+    </button>
+  </div>
+  <div *ngIf="!collapsed" [innerHTML]="comment.text"></div>
+  <ng-container *ngIf="!collapsed && comment.kids">
+    <div *ngFor="let id of comment.kids">
+      <app-comment [commentId]="id"></app-comment>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,4 @@
+.comment-wrapper .comment-wrapper {
+  padding-left: theme("spacing.5");
+  border-left: 2px solid theme("colors.gray.400");
+}

@@ -9,6 +9,8 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { ItemComponent } from './item/item.component';
 import { BaseUrlPipe } from '@pipes/base-url.pipe';
 import { TimeAgoPipe } from '@pipes/time-ago.pipe';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { TimeAgoPipe } from '@pipes/time-ago.pipe';
     ItemComponent,
     BaseUrlPipe,
     TimeAgoPipe,
+    ItemDetailComponent,
+    CommentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

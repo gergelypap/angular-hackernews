@@ -1,0 +1,24 @@
+<div *ngIf="!item">Loading...</div>
+
+<article *ngIf="item">
+  <h2 class="font-bold">
+    {{ item.title }}
+    <a
+      class="ml-2 text-sm font-normal text-gray-600"
+      *ngIf="item.url"
+      href="/from?site="
+    >
+      ({{ item.url | baseUrl }})
+    </a>
+  </h2>
+  <span class="text-sm text-gray-600">
+    {{ item.score }} points by
+    <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
+    <a class="mr-3" href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
+  </span>
+  <ng-container *ngIf="item.kids">
+    <div *ngFor="let id of item.kids">
+      <app-comment [commentId]="id"></app-comment>
+    </div>
+  </ng-container>
+</article>

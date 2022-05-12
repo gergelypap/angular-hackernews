@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ItemListComponent } from './item-list/item-list.component';
 
 const routes: Routes = [
@@ -7,6 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'top', pathMatch: 'full' },
   { path: 'latest', data: { list: 'latest' }, component: ItemListComponent },
   { path: 'best', data: { list: 'best' }, component: ItemListComponent },
+  { path: 'item/:id', component: ItemDetailComponent },
 ];
 
 @NgModule({
