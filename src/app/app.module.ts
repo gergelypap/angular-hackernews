@@ -11,6 +11,7 @@ import { BaseUrlPipe } from '@pipes/base-url.pipe';
 import { TimeAgoPipe } from '@pipes/time-ago.pipe';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { CommentComponent } from './comment/comment.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CommentComponent } from './comment/comment.component';
     TimeAgoPipe,
     ItemDetailComponent,
     CommentComponent,
+    UserDetailComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

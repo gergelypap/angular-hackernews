@@ -5,6 +5,7 @@
 </ol>
 
 <button
+  *ngIf="items.length >= chunkSize"
   class="text-blue-500 font-bold hover:underline disabled:text-gray-600 disabled:cursor-not-allowed"
   (click)="loadMore()"
   [disabled]="loading"

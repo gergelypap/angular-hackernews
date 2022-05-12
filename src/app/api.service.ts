@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from '@models/item.model';
 import { Comment } from '@models/comment.model';
+import { User } from '@models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'https://hacker-news.firebaseio.com/v0/';
+  private readonly baseUrl = 'https://hacker-news.firebaseio.com/v0/';
 
   constructor(private http: HttpClient) {}
 
@@ -26,5 +27,9 @@ export class ApiService {
 
   getItem(id: number): Observable<any> {
     return this.http.get<Item>(`${this.baseUrl}/item/${id}.json`);
+  }
+
+  getUser(name: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/user/${name}.json`);
   }
 }
