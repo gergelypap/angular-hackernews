@@ -1,8 +1,8 @@
 <header class="bg-orange-500">
   <h1 class="inline-block p-3">
-    <a class="font-bold hover:no-underline" routerLink="/"
-      >HackerNews Angular</a
-    >
+    <a class="font-bold hover:no-underline" routerLink="/">
+      HackerNews Angular
+    </a>
   </h1>
   <nav class="inline-block">
     <a
@@ -10,7 +10,8 @@
       *ngFor="let link of links"
       routerLinkActive="active"
       routerLink="{{ link.path }}"
-      >{{ link.text }}</a
     >
+      {{ link.text }}
+    </a>
   </nav>
 </header>
