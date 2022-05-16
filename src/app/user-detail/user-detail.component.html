@@ -4,4 +4,8 @@
   <p>Created: {{ user.created * 1000 | date }}</p>
   <p>Karma: {{ user.karma }}</p>
   <div *ngIf="user.about" [innerHTML]="user.about"></div>
+  <ng-container *ngIf="user.submitted.length">
+    <h2 class="font-bold my-5">Submitted</h2>
+    <app-item-list [ids]="user.submitted" [chunkSize]="10"></app-item-list>
+  </ng-container>
 </div>

@@ -10,4 +10,5 @@ export interface Item {
   url: string;
   parent?: number;
   text?: string;
+  dead?: boolean;
 }

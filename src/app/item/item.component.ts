@@ -8,13 +8,15 @@ import { ApiService } from '../api.service';
   styleUrls: ['./item.component.css'],
 })
 export class ItemComponent implements OnInit {
-  @Input() id: number | undefined;
+  @Input() id!: number;
   item: Item | undefined;
+
   kidsPluralMapping = {
     '=0': 'discuss',
     '=1': '1 comment',
     other: '# comments',
   };
+
   pointsPluralMapping = {
     '=0': '0 points',
     '=1': '1 point',
@@ -24,7 +26,7 @@ export class ItemComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.getItem(this.id as number).subscribe((item) => {
+    this.apiService.getItem(this.id).subscribe((item) => {
       this.item = item;
     });
   }

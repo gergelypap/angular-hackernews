@@ -9,32 +9,36 @@ import { ApiService } from '../api.service';
   styleUrls: ['./item-list.component.css'],
 })
 export class ItemListComponent implements OnInit {
-  public items: number[] = [];
-  public chunkSize: number = 30;
-  public loadedChunks: number = 0;
-  public feed: Observable<number[]> | undefined;
-  public loading: boolean = false;
+  @Input() ids: number[] = [];
+  @Input() chunkSize: number = 30;
+  chunks: number = 0;
+  items: number[] = [];
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ list }) => {
-      this.feed = this.getFeed(list);
+    const { list } = this.route.snapshot.data;
+    if (list) {
+      this.getFeed(list).subscribe((ids) => {
+        this.ids = ids;
+        this.getItems();
+      });
+      return;
+    }
+
+    if (this.ids.length) {
       this.getItems();
-    });
+    }
   }
 
-  getItems(): void {
-    this.loading = true;
-    this.feed?.subscribe((items) => {
-      this.items = this.items.concat(
-        items.slice(
-          this.loadedChunks * this.chunkSize,
-          this.loadedChunks * this.chunkSize + this.chunkSize
-        )
-      );
-      this.loading = false;
-    });
+  getItems() {
+    this.items = [
+      ...this.items,
+      ...this.ids.slice(
+        this.chunks * this.chunkSize,
+        this.chunks * this.chunkSize + this.chunkSize
+      ),
+    ];
   }
 
   getFeed(list: string): Observable<number[]> {
@@ -51,7 +55,7 @@ export class ItemListComponent implements OnInit {
   }
 
   loadMore() {
-    this.loadedChunks++;
+    this.chunks++;
     this.getItems();
   }
 }

@@ -1,14 +1,18 @@
 <span *ngIf="!item">Loading...</span>
 
+<em class="text-gray-500" *ngIf="item?.dead">(dead)</em>
+
 <article class="mb-3" *ngIf="item">
-  <h2 class="font-bold">
+  <div *ngIf="item.type === 'comment'" [innerHTML]="item.text"></div>
+  <h2 class="font-bold" *ngIf="item.type === 'story'">
     <a href="{{ item.url }}">{{ item.title }}</a>
     <a
       class="ml-2 text-sm font-normal text-gray-600"
       *ngIf="item.url"
       href="/from?site="
-      >({{ item.url | baseUrl }})</a
     >
+      ({{ item.url | baseUrl }})
+    </a>
   </h2>
   <span class="text-sm text-gray-600">
     {{ item.score | i18nPlural: pointsPluralMapping }} by
