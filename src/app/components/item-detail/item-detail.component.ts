@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Comment } from '@models/comment.model';
-import { Item } from '@models/item.model';
-import { ApiService } from '../api.service';
+import { Comment } from 'src/app/models/comment.model';
+import { Item } from 'src/app/models/item.model';
+import { ApiService } from '@services/api.service';
 
 @Component({
   selector: 'app-item-detail',

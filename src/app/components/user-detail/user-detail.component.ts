@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Item } from '@models/item.model';
-import { User } from '@models/user.model';
-import { ApiService } from '../api.service';
+import { Item } from 'src/app/models/item.model';
+import { User } from 'src/app/models/user.model';
+import { ApiService } from '@services/api.service';
 
 @Component({
   selector: 'app-user-detail',

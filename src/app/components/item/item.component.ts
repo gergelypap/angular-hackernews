@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Item } from '@models/item.model';
-import { ApiService } from '../api.service';
+import { Item } from 'src/app/models/item.model';
+import { ApiService } from '@services/api.service';
 
 @Component({
   selector: 'app-item',

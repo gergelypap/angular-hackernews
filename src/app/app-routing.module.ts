@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ItemDetailComponent } from './item-detail/item-detail.component';
-import { ItemListComponent } from './item-list/item-list.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { ItemDetailComponent } from '@components/item-detail/item-detail.component';
+import { ItemListComponent } from '@components/item-list/item-list.component';
+import { UserDetailComponent } from '@components/user-detail/user-detail.component';
 
 const routes: Routes = [
   { path: 'top', data: { list: 'top' }, component: ItemListComponent },
