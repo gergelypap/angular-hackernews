@@ -1,7 +1,7 @@
 <div *ngIf="!item">Loading...</div>
 
 <article *ngIf="item">
-  <h2 class="font-bold">
+  <h2 class="font-bold" *ngIf="item.type === 'story'">
     {{ item.title }}
     <a
       class="ml-2 text-sm font-normal text-gray-600"
@@ -11,6 +11,11 @@
       ({{ item.url | baseUrl }})
     </a>
   </h2>
+
+  <div *ngIf="item && item.type === 'comment'">
+    <div [innerHTML]="item.text"></div>
+  </div>
+
   <span class="text-sm text-gray-600">
     {{ item.score }} points by
     <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
