@@ -1,9 +1,10 @@
-<span *ngIf="!item">Loading...</span>
+<span *ngIf="!item$">Loading...</span>
 
-<em class="text-gray-500" *ngIf="item?.dead">(dead)</em>
+<em class="text-gray-500" *ngIf="(item$ | async)?.dead">(dead)</em>
 
-<article class="mb-3" *ngIf="item">
+<article class="mb-3" *ngIf="item$ | async as item">
   <div *ngIf="item.type === 'comment'" [innerHTML]="item.text"></div>
+
   <h2 class="font-bold" *ngIf="item.type === 'story'">
     <a href="{{ item.url }}">{{ item.title }}</a>
     <a
@@ -14,6 +15,11 @@
       ({{ item.url | baseUrl }})
     </a>
   </h2>
+
+  <h2 class="font-bold" *ngIf="item.type === 'job'">
+    <a href="{{ item.url }}">{{ item.title }}</a>
+  </h2>
+
   <span class="text-sm text-gray-600">
     {{ item.score | i18nPlural: pointsPluralMapping }} by
     <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>

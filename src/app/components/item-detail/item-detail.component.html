@@ -12,6 +12,10 @@
     </a>
   </h2>
 
+  <h2 class="font-bold" *ngIf="item.type === 'job'">
+    {{ item.title }}
+  </h2>
+
   <div *ngIf="item && item.type === 'comment'">
     <div [innerHTML]="item.text"></div>
   </div>

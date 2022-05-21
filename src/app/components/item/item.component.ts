@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Item } from 'src/app/models/item.model';
 import { ApiService } from '@services/api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item',
@@ -9,7 +10,7 @@ import { ApiService } from '@services/api.service';
 })
 export class ItemComponent implements OnInit {
   @Input() id!: number;
-  item: Item | undefined;
+  item$!: Observable<Item>;
 
   kidsPluralMapping = {
     '=0': 'discuss',
@@ -26,8 +27,6 @@ export class ItemComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.getItem(this.id).subscribe((item) => {
-      this.item = item;
-    });
+    this.item$ = this.apiService.getItem(this.id);
   }
 }
