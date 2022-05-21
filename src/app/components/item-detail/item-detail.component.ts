@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Comment } from 'src/app/models/comment.model';
 import { Item } from 'src/app/models/item.model';
 import { ApiService } from '@services/api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item-detail',
@@ -10,21 +10,12 @@ import { ApiService } from '@services/api.service';
   styleUrls: ['./item-detail.component.css'],
 })
 export class ItemDetailComponent implements OnInit {
-  item: Item | undefined;
-  comments: Comment[] | undefined;
+  item$!: Observable<Item>;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params['id']);
-    this.apiService.getItem(id).subscribe((item) => {
-      this.item = item;
-    });
-  }
-
-  getComments() {
-    this.item?.kids?.map((id) =>
-      this.apiService.getItem(id).subscribe((comment) => console.log(comment))
-    );
+    this.item$ = this.apiService.getItem(id);
   }
 }
