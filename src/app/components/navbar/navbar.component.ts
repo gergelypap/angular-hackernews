@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 interface Link {
   path: string;
@@ -10,14 +10,10 @@ interface Link {
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   links: Link[] = [
     { path: '/top', text: 'top' },
     { path: '/latest', text: 'latest' },
     { path: '/best', text: 'best' },
   ];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
