@@ -1,6 +1,7 @@
-<div *ngIf="!user">Loading user...</div>
-<div *ngIf="user">
-  <h1 class="text-lg font-bold">User: {{ user?.id }}</h1>
+<div *ngIf="!user$">Loading user...</div>
+
+<div *ngIf="user$ | async as user">
+  <h1 class="text-lg font-bold">User: {{ user.id }}</h1>
   <p>Created: {{ user.created * 1000 | date }}</p>
   <p>Karma: {{ user.karma }}</p>
   <div *ngIf="user.about" [innerHTML]="user.about"></div>
