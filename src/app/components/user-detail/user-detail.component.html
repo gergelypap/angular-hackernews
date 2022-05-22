@@ -1,6 +1,4 @@
-<div *ngIf="!user$">Loading user...</div>
-
-<div *ngIf="user$ | async as user">
+<div *ngIf="user$ | async as user; else loading">
   <h1 class="text-lg font-bold">User: {{ user.id }}</h1>
   <p>Created: {{ user.created * 1000 | date }}</p>
   <p>Karma: {{ user.karma }}</p>
@@ -10,3 +8,5 @@
     <app-item-list [ids]="user.submitted" [chunkSize]="10"></app-item-list>
   </ng-container>
 </div>
+
+<ng-template #loading>Loading user...</ng-template>

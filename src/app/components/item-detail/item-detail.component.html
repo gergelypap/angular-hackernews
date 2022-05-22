@@ -1,6 +1,4 @@
-<div *ngIf="!item$">Loading...</div>
-
-<article *ngIf="item$ | async as item">
+<article *ngIf="item$ | async as item; else loading">
   <h2 class="font-bold" *ngIf="item.type === 'story'">
     {{ item.title }}
     <a
@@ -31,3 +29,5 @@
     </div>
   </ng-container>
 </article>
+
+<ng-template #loading>Loading item...</ng-template>

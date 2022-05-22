@@ -1,31 +1,33 @@
-<span *ngIf="!item$">Loading...</span>
+<article class="mb-3" *ngIf="item$ | async as item; else loading">
+  <ng-container *ngIf="!item.dead; else dead">
+    <div *ngIf="item.type === 'comment'" [innerHTML]="item.text"></div>
 
-<em class="text-gray-500" *ngIf="(item$ | async)?.dead">(dead)</em>
+    <h2 class="font-bold" *ngIf="item.type === 'story'">
+      <a href="{{ item.url }}">{{ item.title }}</a>
+      <a
+        class="ml-2 text-sm font-normal text-gray-600"
+        *ngIf="item.url"
+        href="/from?site="
+      >
+        ({{ item.url | baseUrl }})
+      </a>
+    </h2>
 
-<article class="mb-3" *ngIf="item$ | async as item">
-  <div *ngIf="item.type === 'comment'" [innerHTML]="item.text"></div>
+    <h2 class="font-bold" *ngIf="item.type === 'job'">
+      <a href="{{ item.url }}">{{ item.title }}</a>
+    </h2>
 
-  <h2 class="font-bold" *ngIf="item.type === 'story'">
-    <a href="{{ item.url }}">{{ item.title }}</a>
-    <a
-      class="ml-2 text-sm font-normal text-gray-600"
-      *ngIf="item.url"
-      href="/from?site="
-    >
-      ({{ item.url | baseUrl }})
-    </a>
-  </h2>
+    <span class="text-sm text-gray-600">
+      {{ item.score | i18nPlural: pointsPluralMapping }} by
+      <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
+      <a class="mr-3" href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
+      <a class="mr-3" *ngIf="item.kids" href="/item/{{ item.id }}">{{
+        item.kids.length | i18nPlural: kidsPluralMapping
+      }}</a>
+    </span>
+  </ng-container>
 
-  <h2 class="font-bold" *ngIf="item.type === 'job'">
-    <a href="{{ item.url }}">{{ item.title }}</a>
-  </h2>
-
-  <span class="text-sm text-gray-600">
-    {{ item.score | i18nPlural: pointsPluralMapping }} by
-    <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
-    <a class="mr-3" href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
-    <a class="mr-3" *ngIf="item.kids" href="/item/{{ item.id }}">{{
-      item.kids.length | i18nPlural: kidsPluralMapping
-    }}</a>
-  </span>
+  <ng-template #dead>(dead)</ng-template>
 </article>
+
+<ng-template #loading>Loading item...</ng-template>

@@ -1,6 +1,7 @@
-<div *ngIf="!comment$">Loading comment...</div>
-
-<div *ngIf="comment$ | async as comment" class="comment-wrapper mt-5">
+<div
+  *ngIf="comment$ | async as comment; else loading"
+  class="comment-wrapper mt-5"
+>
   <div class="text-sm text-gray-500 inline-block">
     <a class="mr-2" [routerLink]="['/user', comment.by]">{{ comment.by }}</a>
     <span class="mr-2">{{ comment.time | timeAgo }}</span>
@@ -16,3 +17,5 @@
     </div>
   </ng-container>
 </div>
+
+<ng-template #loading>Loading comment...</ng-template>
