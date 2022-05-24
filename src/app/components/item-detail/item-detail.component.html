@@ -19,7 +19,7 @@
   </div>
 
   <span class="text-sm text-gray-600">
-    {{ item.score }} points by
+    <ng-container *ngIf="item.score">{{ item.score }} points </ng-container> by
     <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
     <a class="mr-3" href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
   </span>
