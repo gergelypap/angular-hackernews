@@ -2,20 +2,26 @@
   *ngIf="comment$ | async as comment; else loading"
   class="comment-wrapper mt-5"
 >
-  <div class="text-sm text-gray-500 inline-block">
-    <a class="mr-2" [routerLink]="['/user', comment.by]">{{ comment.by }}</a>
-    <span class="mr-2">{{ comment.time | timeAgo }}</span>
-    <button (click)="toggleCollapsed()" *ngIf="!collapsed">[-]</button>
-    <button (click)="toggleCollapsed()" *ngIf="collapsed">
-      [+{{ comment.kids?.length }}]
-    </button>
-  </div>
-  <div *ngIf="!collapsed" [innerHTML]="comment.text"></div>
-  <ng-container *ngIf="!collapsed && comment.kids">
-    <div *ngFor="let id of comment.kids">
-      <app-comment [commentId]="id"></app-comment>
+  <em *ngIf="comment.deleted; else commentBlock">[deleted]</em>
+  <ng-template #commentBlock>
+    <div class="text-sm text-gray-500 inline-block" #commentBlock>
+      <a class="mr-2" [routerLink]="['/user', comment.by]">{{ comment.by }}</a>
+      <a class="mr-2" [routerLink]="['/item', comment.id]">
+        <span class="mr-2">{{ comment.time | timeAgo }}</span>
+      </a>
+      <button (click)="toggleCollapsed()" *ngIf="!collapsed">[-]</button>
+      <button (click)="toggleCollapsed()" *ngIf="collapsed">
+        [+{{ comment.kids?.length }}]
+      </button>
     </div>
-  </ng-container>
+
+    <div *ngIf="!collapsed" [innerHTML]="comment.text"></div>
+    <ng-container *ngIf="!collapsed && comment.kids">
+      <div *ngFor="let id of comment.kids">
+        <app-comment [commentId]="id"></app-comment>
+      </div>
+    </ng-container>
+  </ng-template>
 </div>
 
 <ng-template #loading>Loading comment...</ng-template>
