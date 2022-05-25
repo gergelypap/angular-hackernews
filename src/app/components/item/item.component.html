@@ -20,7 +20,9 @@
     <span class="text-sm text-gray-600">
       {{ item.score | i18nPlural: pointsPluralMapping }} by
       <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
-      <a class="mr-3" href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
+      <a class="mr-3" href="/item/{{ item.id }}">{{
+        item.time * 1000 | timeago: "live"
+      }}</a>
       <a class="mr-3" *ngIf="item.kids" href="/item/{{ item.id }}">{{
         item.kids.length | i18nPlural: kidsPluralMapping
       }}</a>

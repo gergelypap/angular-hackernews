@@ -7,7 +7,7 @@
     <div class="text-sm text-gray-500 inline-block" #commentBlock>
       <a class="mr-2" [routerLink]="['/user', comment.by]">{{ comment.by }}</a>
       <a class="mr-2" [routerLink]="['/item', comment.id]">
-        <span class="mr-2">{{ comment.time | timeAgo }}</span>
+        <span class="mr-2">{{ comment.time * 1000 | timeago: "live" }}</span>
       </a>
       <button (click)="toggleCollapsed()" *ngIf="!collapsed">[-]</button>
       <button (click)="toggleCollapsed()" *ngIf="collapsed">

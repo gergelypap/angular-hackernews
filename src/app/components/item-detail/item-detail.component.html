@@ -21,7 +21,9 @@
   <span class="text-sm text-gray-600">
     <ng-container *ngIf="item.score">{{ item.score }} points </ng-container> by
     <a class="mr-3" href="/user/{{ item.by }}">{{ item.by }}</a>
-    <a class="mr-3" href="/item/{{ item.id }}">{{ item.time | timeAgo }}</a>
+    <a class="mr-3" href="/item/{{ item.id }}">{{
+      item.time * 1000 | timeago: "live"
+    }}</a>
   </span>
   <ng-container *ngIf="item.kids">
     <div *ngFor="let id of item.kids">
