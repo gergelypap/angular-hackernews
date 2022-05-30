@@ -4,13 +4,9 @@
 
     <h2 class="font-bold" *ngIf="item.type === 'story'">
       <a href="{{ item.url }}">{{ item.title }}</a>
-      <a
-        class="ml-2 text-sm font-normal text-gray-600"
-        *ngIf="item.url"
-        href="/from?site="
-      >
+      <span class="ml-2 text-sm font-normal text-gray-600" *ngIf="item.url">
         ({{ item.url | baseUrl }})
-      </a>
+      </span>
     </h2>
 
     <h2 class="font-bold" *ngIf="item.type === 'job'">

@@ -1,13 +1,9 @@
 <article *ngIf="item$ | async as item; else loading">
   <h2 class="font-bold" *ngIf="item.type === 'story'">
     {{ item.title }}
-    <a
-      class="ml-2 text-sm font-normal text-gray-600"
-      *ngIf="item.url"
-      href="/from?site="
-    >
+    <span class="ml-2 text-sm font-normal text-gray-600" *ngIf="item.url">
       ({{ item.url | baseUrl }})
-    </a>
+    </span>
   </h2>
 
   <h2 class="font-bold" *ngIf="item.type === 'job'">
